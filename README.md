@@ -39,18 +39,18 @@ And add this to your module's `build.gradle`
 
 ```groovy
 dependencies {
-    implementation 'com.github.esafirm:android-image-picker:x.y.z'
+    implementation 'com.github.baoxin:android-image-picker:x.y.z'
 }
 ```
 
-change `x.y.z` to version in the [release page](https://github.com/esafirm/android-image-picker/releases)
+change `x.y.z` to version in the [release page](https://github.com/baoxin/android-image-picker/releases)
 
 # Usage
 
 For full example, please refer to the `sample` app.
 
 Also you can browse the issue labeled as
-question [here](https://github.com/esafirm/android-image-picker/issues?utf8=%E2%9C%93&q=label%3Aquestion+)
+question [here](https://github.com/baoxin/android-image-picker/issues?utf8=%E2%9C%93&q=label%3Aquestion+)
 
 ## Start image picker activity
 
@@ -133,6 +133,10 @@ You also still can use the `DefaultCameraModule` but discouraged to do it.
 - [Using another image library](https://github.com/esafirm/android-image-picker/blob/main/docs/another_image_library.md)
 - [Return mode](https://github.com/esafirm/android-image-picker/blob/main/docs/return_mode.md)
 - [Save location](https://github.com/esafirm/android-image-picker/blob/main/docs/save_location.md)
+
+# Version 3.0.1
+
+Fixed an issue where continuous clicks or other operations when selecting pictures caused the number of pictures selected to be inconsistent with the actual number.
 
 # Version 2.x.x
 
