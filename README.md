@@ -143,18 +143,10 @@ Fixed an issue where continuous clicks or other operations when selecting pictur
 If you still use the previous version, you can check `2.x` branch
 in [here](https://github.com/esafirm/android-image-picker/tree/2.x)
 
-# Support Me!
-
-I would make myself more commited to this repo and OSS works in general.
-
-Would you help me achieving this goals?
-
-<a href='https://ko-fi.com/M4M41RRE0' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi4.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-
 # Credits
 
 - AIP Logo by [anaufalm](https://github.com/anaufalm)
 
 # License
 
-MIT @ Esa Firman
+MIT @ Baoxin
