@@ -326,6 +326,10 @@ class ImagePickerFragment : Fragment() {
             return
         }
 
+        if (ActivityCompat.checkSelfPermission(requireContext(),Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED) == PackageManager.PERMISSION_GRANTED){
+            return
+        }
+
         if (!preferences.isPermissionRequested()) {
             preferences.setPermissionIsRequested()
             requestPermissionLauncher.launch(permissions)
