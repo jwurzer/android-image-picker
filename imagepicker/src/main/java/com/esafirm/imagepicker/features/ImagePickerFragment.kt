@@ -301,7 +301,7 @@ class ImagePickerFragment : Fragment() {
                 it.btnManage.text = getString(R.string.ef_manage)
                 it.rlHeader.visibility = View.VISIBLE
                 it.btnManage.setOnClickListener {
-                    requestPermissionLauncher.launch(arrayOf(READ_MEDIA_VISUAL_USER_SELECTED))
+                    requestPermissionLauncher.launch(arrayOf(READ_MEDIA_VISUAL_USER_SELECTED, READ_MEDIA_IMAGES, READ_MEDIA_VIDEO))
                 }
             }
         } else {

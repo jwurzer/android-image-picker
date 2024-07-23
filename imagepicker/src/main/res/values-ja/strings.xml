@@ -21,8 +21,6 @@
     <string name="ef_msg_limit_images">選択できる画像の上限です</string>
     <string name="ef_ltitle_permission_denied">権限がありません</string>
     <string name="media_status_piece">現在の権限設定に基づいて、一部のメディアファイルのみアクセスできます。</string>
-    <string name="media_status_piece">Based on your current permission settings, you only have access to some media files</string>
-    <string name="media_status_piece">Based on your current permission settings, you only have access to some media files</string>
     <string name="ef_manage">管理する</string>
 
 </resources>
