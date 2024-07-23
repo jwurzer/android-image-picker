@@ -1,10 +1,15 @@
 package com.esafirm.imagepicker.features
 
 import android.Manifest
+import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import android.Manifest.permission.READ_MEDIA_IMAGES
+import android.Manifest.permission.READ_MEDIA_VIDEO
+import android.Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.Build
@@ -19,6 +24,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.RequestMultiplePermissions
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.esafirm.imagepicker.R
@@ -61,6 +67,12 @@ class ImagePickerFragment : Fragment() {
 
     private val requestPermissionLauncher =
         registerForActivityResult(RequestMultiplePermissions()) { resultMap ->
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                if (ActivityCompat.checkSelfPermission(requireContext(), READ_MEDIA_VISUAL_USER_SELECTED) == PackageManager.PERMISSION_GRANTED){
+                    loadData()
+                    return@registerForActivityResult
+                }
+            }
             val isGranted = resultMap.values.all { it }
             if (isGranted) {
                 IpLogger.d("Write External permission granted")
@@ -261,6 +273,7 @@ class ImagePickerFragment : Fragment() {
      * Check permission
      */
     private fun loadDataWithPermission() {
+        checkPermission()
         val allGranted = permissions.all {
             ActivityCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
         }
@@ -270,6 +283,32 @@ class ImagePickerFragment : Fragment() {
             requestWriteExternalOrReadImagesPermission()
         }
     }
+
+    private fun checkPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+            && (ContextCompat.checkSelfPermission(requireContext(), READ_MEDIA_IMAGES) == PERMISSION_GRANTED
+                    || ContextCompat.checkSelfPermission(requireContext(), READ_MEDIA_VIDEO) == PERMISSION_GRANTED)
+        ) {
+            // Full access on Android 13 (API level 33) or higher
+            binding?.rlHeader?.visibility = View.GONE
+        } else if (
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE &&
+            ContextCompat.checkSelfPermission(requireContext(), READ_MEDIA_VISUAL_USER_SELECTED) == PERMISSION_GRANTED
+        ) {
+            // Partial access on Android 14 (API level 34) or higher
+            binding?.let {
+                it.tvHeader.text = getString(R.string.media_status_piece)
+                it.btnManage.text = getString(R.string.ef_manage)
+                it.rlHeader.visibility = View.VISIBLE
+                it.btnManage.setOnClickListener {
+                    requestPermissionLauncher.launch(arrayOf(READ_MEDIA_VISUAL_USER_SELECTED))
+                }
+            }
+        } else {
+            binding?.rlHeader?.visibility = View.GONE
+        }
+    }
+
 
     private fun loadData() = presenter.loadData(config)
 
