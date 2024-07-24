@@ -11,6 +11,10 @@ buildscript {
     }
 }
 
+plugins{
+    id 'maven-publish'
+}
+
 ext {
     sdk = [
         compileSdk: 34,
