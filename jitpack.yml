@@ -1,4 +1,4 @@
 jdk:
   - openjdk17
 before_install:
-           - ./setup.sh
+  - ./setup.sh
