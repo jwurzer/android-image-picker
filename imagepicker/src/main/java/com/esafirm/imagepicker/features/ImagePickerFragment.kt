@@ -53,8 +53,11 @@ class ImagePickerFragment : Fragment() {
 
     private val permissions: Array<String> by lazy {
         when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE->
+                arrayOf(READ_MEDIA_IMAGES, READ_MEDIA_VIDEO,READ_MEDIA_VISUAL_USER_SELECTED)
+
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ->
-                arrayOf(Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_VIDEO)
+                arrayOf(READ_MEDIA_IMAGES, READ_MEDIA_VIDEO)
 
             Build.VERSION.SDK_INT < Build.VERSION_CODES.Q
                 || Environment.isExternalStorageLegacy() -> arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -317,7 +320,7 @@ class ImagePickerFragment : Fragment() {
             return
         }
 
-        if (ActivityCompat.checkSelfPermission(requireContext(),Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED) == PERMISSION_GRANTED){
+        if (ActivityCompat.checkSelfPermission(requireContext(),READ_MEDIA_VISUAL_USER_SELECTED) == PERMISSION_GRANTED){
             return
         }
 
