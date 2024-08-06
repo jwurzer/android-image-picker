@@ -10,7 +10,7 @@ class DefaultValueComparison<T> : ValueComparison<T> {
     }
 }
 
-class SimpleDiffUtilCallBack<T>(
+class SimpleDiffUtilCallBack<T : Any>(
     private val areItemTheSame: ValueComparison<T> = DefaultValueComparison(),
     private val areContentTheSame: ValueComparison<T> = DefaultValueComparison()
 ) : DiffUtil.ItemCallback<T>() {

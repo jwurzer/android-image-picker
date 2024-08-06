@@ -3,6 +3,7 @@ package com.esafirm.imagepicker.adapter
 import android.content.Context
 import android.net.Uri
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,7 +54,7 @@ class ImagePickerAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: ImageViewHolder, position: Int) {
-        val image = getItem(position) ?: return
+        val image = getItem(viewHolder.absoluteAdapterPosition) ?: return
 
         val isSelected = isSelected(image)
         imageLoader.loadImage(image, viewHolder.imageView, ImageType.GALLERY)
@@ -87,9 +88,9 @@ class ImagePickerAdapter(
                 val shouldSelect = itemClickListener(isSelected)
 
                 if (isSelected) {
-                    removeSelectedImage(image, position)
+                    removeSelectedImage(image, viewHolder.layoutPosition)
                 } else if (shouldSelect) {
-                    addSelected(image, position)
+                    addSelected(image, viewHolder.layoutPosition)
                 }
             }
             container.foreground = if (isSelected) ContextCompat.getDrawable(
