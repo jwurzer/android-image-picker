@@ -49,9 +49,11 @@ tasks.register("sourcesJar", Jar) {
     archiveClassifier.set('sources')
 }
 
-tasks.named("sourcesJar").configure { sourcesJarTask ->
-    tasks.findByName("generateMetadataFileForImagepickerPublication")?.configure {
-        dependsOn(sourcesJarTask)
+afterEvaluate {
+    tasks.named("sourcesJar").configure { sourcesJarTask ->
+        tasks.findByName("generateMetadataFileForImagepickerPublication")?.configure {
+            dependsOn(sourcesJarTask)
+        }
     }
 }
 
