@@ -13,6 +13,8 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
+import android.os.Looper
 import android.os.Parcelable
 import android.provider.Settings
 import android.view.LayoutInflater
@@ -355,6 +357,9 @@ class ImagePickerFragment : Fragment() {
         if (requestCode == RC_CAPTURE) {
             if (resultCode == Activity.RESULT_OK) {
                 presenter.finishCaptureImage(requireContext(), data, config)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    binding?.recyclerView?.scrollToPosition(0)
+                }, 500)
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 presenter.abortCaptureImage(requireContext())
             }
