@@ -75,7 +75,8 @@ object ImagePickerUtils {
             val packageName = resolvedIntentInfo.activityInfo.packageName
             context.grantUriPermission(
                 packageName, fileUri,
-                Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION
+                //Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
             )
         }
     }
@@ -83,7 +84,8 @@ object ImagePickerUtils {
     fun revokeAppPermission(context: Context, fileUri: Uri?) {
         context.revokeUriPermission(
             fileUri,
-            Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION
+            //Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION
+            Intent.FLAG_GRANT_READ_URI_PERMISSION
         )
     }
 

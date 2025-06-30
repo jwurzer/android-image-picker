@@ -27,7 +27,8 @@ class ImageGeneratorScenario {
     @Rule
     @JvmField
     var grantPermissionRule = GrantPermissionRule.grant(
-        "android.permission.WRITE_EXTERNAL_STORAGE"
+        //"android.permission.WRITE_EXTERNAL_STORAGE"
+        "android.permission.READ_EXTERNAL_STORAGE"
     )
 
     @Test
