@@ -3,9 +3,9 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
-    <uses-permission
+    <!--uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="29" />
+        android:maxSdkVersion="29" /-->
 
     <!--  Tiramisu and above  -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
@@ -30,10 +30,10 @@
 
     </application>
 
-    <queries>
+    <!--queries>
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
         </intent>
-    </queries>
+    </queries-->
 
 </manifest>
